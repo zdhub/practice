@@ -9,6 +9,7 @@ package leetcode;
 @Medium
 public class Solution33 {
     public static int search(int[] nums, int target) {
+        if (nums == null || nums.length == 0) return -1;
         return middleSearch(0, nums, nums.length - 1, target);
     }
 
@@ -18,13 +19,15 @@ public class Solution33 {
         }
         int middle = (start + end) / 2;
         if (nums[middle] == target) return middle;
-        else if (nums[middle] < target) return middleSearch(middle + 1, nums, end, target);
-        else return middleSearch(start, nums, end - 1, target);
+        else if (nums[start] == target) return start;
+        else if (nums[end] == target) return end;
+        else if (nums[start] < target || nums[middle] > target) return middleSearch(start, nums, end - 1, target);
+        else return middleSearch(middle + 1, nums, end, target);
     }
 
     public static void main(String[] args) {
-        int[] nums = {5,6,7,1,2,3,4};
-        int target = 5;
+        int[] nums = {5, 1, 2, 3, 4};
+        int target = 1;
         System.out.println(search(nums, target));
     }
 }
