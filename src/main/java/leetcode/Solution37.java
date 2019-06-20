@@ -7,8 +7,13 @@ package leetcode;
  * @date:2019/6/20 22:14
  */
 @Hard
+@TriedButFaild
 public class Solution37 {
     //完全没有思路
+    //有两个概念，一个是约束编程，基本意思是在放置每个数字时都设置约束。在数独上放置一个数字之后立即排除当前
+    //行，列以及子方块对该数字的使用。这会传播约束条件，并有利于减少需要考虑组合的个数
+    //第二个叫做回溯。当已经成功放置几个数字在数独上时，但是此时不能放置数字时，该怎么办，回溯。
+    //意思是回退，来改变之前放置的数字并且继续尝试，如果不行，再次回溯。
     public static void main(String[] args) {
         char[][] board = new char[][]{
                 {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
@@ -55,6 +60,7 @@ public class Solution37 {
     }
 
     private boolean dfs(char[][] board, boolean[][] row, boolean[][] column, boolean[][] box, int i, int j) {
+        //寻找空位置
         while (board[i][j] != '.') {
             if (++j >= 9) {
                 i++;
@@ -67,6 +73,7 @@ public class Solution37 {
         for (int num = 1; num <= 9; num++) {
             int boxIndex = i / 3 * 3 + j / 3;
             if (!row[i][num] && !column[j][num] && !box[boxIndex][num]) {
+                //递归
                 board[i][j] = (char) ('0' + num);
                 row[i][num] = true;
                 column[j][num] = true;
@@ -74,6 +81,7 @@ public class Solution37 {
                 if (dfs(board, row, column, box, i, j)) {
                     return true;
                 } else {
+                    //回溯
                     row[i][num] = false;
                     column[j][num] = false;
                     box[boxIndex][num] = false;
