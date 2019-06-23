@@ -17,6 +17,8 @@ import java.util.List;
  * @author:yizhendong
  * @date:2019/6/22 16:08
  */
+@Medium
+@TriedButFaild
 public class Solution39 {
     public static void main(String[] args) {
         int[] candidates = {2, 3, 6, 7};
