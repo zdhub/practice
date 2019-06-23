@@ -4,6 +4,7 @@ package leetcode;
  * @Description: 给定一个未排序的整数数组，找出其中没有出现的最小的正整数。
  * https://leetcode-cn.com/problems/first-missing-positive/
  * 关键是要是用时间复杂度应为O(n)的算法，并且只能使用常数级别的空间
+ * 由于是On的时间复杂度，所以只能遍历一遍。本题需要充分利用数组的下标和数值的关系来处理。
  * @vertion:1.0
  * @author:yizhendong
  * @date:2019/6/23 19:03
