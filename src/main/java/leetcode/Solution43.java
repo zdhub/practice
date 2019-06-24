@@ -6,6 +6,7 @@ package leetcode;
  * @author:yizhendong
  * @date:2019/6/24 20:56
  */
+@Medium
 public class Solution43 {
     public static void main(String[] args) {
         String str1 = "123";
