@@ -2,6 +2,11 @@ package com.example.spring.practice;
 
 import org.springframework.web.util.HtmlUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * @ClassName Solution
  * @Descirption
@@ -83,9 +88,76 @@ public class Solution {
 
 
 
-    public static void main(String[] args) {
-        String str = "\"";
-        System.out.println(HtmlUtils.htmlEscape(str));
+    public static void main(String[] args) throws InterruptedException {
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        for (int j = 0 ;j<50000;j++){
+
+            ArrayList<Object> objects = new ArrayList<>(500);
+            boolean flag = true;
+                for (int i = 0; i < 100; i++) {
+                    int finalI = i;
+                    executorService.submit(() -> {
+                        objects.add(finalI);
+
+                    });
+                    executorService.submit(() -> {
+                        objects.add(finalI);
+
+                    });
+                    executorService.submit(() -> {
+                        objects.add(finalI);
+
+                    });
+                    executorService.submit(() -> {
+                        objects.add(finalI);
+
+                    });
+                    executorService.submit(() -> {
+                        objects.add(finalI);
+
+                    });
+                }
+                for (int i = 0;i<objects.size();i++) {
+                    if (objects.get(i) == null) {
+                        System.out.println( i + "出现null!!!!!");
+                        break;
+                    }
+                }
+                objects.clear();
+                System.out.println("结束");
+            }
+    }
+
+    private static void addNumber(List<Integer> list) {
+        // 线程A将0-1000添加到list
+        new Thread(new Runnable() {
+            public void run() {
+                for (int i = 0; i < 100 ; i++) {
+                    list.add(i);
+
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+        // 线程B将1000-2000添加到列表
+        new Thread(new Runnable() {
+            public void run() {
+                for (int i = 100; i < 200 ; i++) {
+                    list.add(i);
+
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
 }
