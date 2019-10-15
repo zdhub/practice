@@ -40,7 +40,7 @@ public class IOUtil {
     }
 
     /**
-     * 通过FileChannel类
+     * 通过FileChannel类的transferTo或者transferFrom
      */
     public static void copyFileByChannel(File source, File dest) throws IOException{
         FileChannel sourceChannel = null;
