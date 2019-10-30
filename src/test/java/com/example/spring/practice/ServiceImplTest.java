@@ -19,12 +19,14 @@ public class ServiceImplTest {
     public void InvocationTest(){
         Service service = new ServiceImpl();
         MyInvocationHandler handler = new MyInvocationHandler(service);
-
-        Service serviceProxy = (Service) Proxy.newProxyInstance(service.getClass().getClassLoader(), service.getClass().getInterfaces(), handler);
-        serviceProxy.add();
-        System.out.println("+++++++++++test+++++++++++++");
-        serviceProxy.update();
+        Service servicetest = (Service) handler.getProxyInstance();
+        servicetest.add();
     }
+//        Service serviceProxy = (Service) Proxy.newProxyInstance(service.getClass().getClassLoader(), service.getClass().getInterfaces(), handler);
+//        serviceProxy.add();
+//        System.out.println("+++++++++++test+++++++++++++");
+//        serviceProxy.update();
+//    }
 
 //    @Test
 //    public String simplifyPath(String path) {
@@ -59,31 +61,31 @@ public class ServiceImplTest {
 //    }
 
 
-    @Test
-    public void testIp(){
-        System.out.println(restoreIpAddresses("0000"));
-    }
-    public List<String> restoreIpAddresses(String s) {
-        if(s == null || s.length() < 4) return null;
-        List<String> finalResult = new ArrayList<>();
-        for(int i = 1;i<s.length()-3;i++){
-            for(int j = i+1;j<s.length()-2;j++){
-                for(int k = j+1;k<s.length()-1;k++){
-                    String first = s.substring(0,i);
-                    String second = s.substring(i, j);
-                    String third = s.substring(j,k);
-                    String last = s.substring(k,s.length());
-                    if(!validNumber(first)) continue;
-                    if(!validNumber(second)) continue;
-                    if(!validNumber(third)) continue;
-                    if(!validNumber(last)) continue;
-                    String temp = getResult(first, second, third, last);
-                    finalResult.add(temp);
-                }
-            }
-        }
-        return finalResult;
-    }
+//    @Test
+//    public void testIp(){
+//        System.out.println(restoreIpAddresses("0000"));
+//    }
+//    public List<String> restoreIpAddresses(String s) {
+//        if(s == null || s.length() < 4) return null;
+//        List<String> finalResult = new ArrayList<>();
+//        for(int i = 1;i<s.length()-3;i++){
+//            for(int j = i+1;j<s.length()-2;j++){
+//                for(int k = j+1;k<s.length()-1;k++){
+//                    String first = s.substring(0,i);
+//                    String second = s.substring(i, j);
+//                    String third = s.substring(j,k);
+//                    String last = s.substring(k,s.length());
+//                    if(!validNumber(first)) continue;
+//                    if(!validNumber(second)) continue;
+//                    if(!validNumber(third)) continue;
+//                    if(!validNumber(last)) continue;
+//                    String temp = getResult(first, second, third, last);
+//                    finalResult.add(temp);
+//                }
+//            }
+//        }
+//        return finalResult;
+//    }
 
     public static boolean validNumber(String number){
         char first = number.charAt(0);
