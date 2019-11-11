@@ -11,11 +11,12 @@ import java.util.Stack;
 @Easy
 public class Solution20 {
     public static void main(String[] args) {
-        System.out.println(isValid("{}{}"));
-        System.out.println(isValid("{{{{}{{}}}{}"));
-        System.out.println(isValid("[{}{}]"));
-        System.out.println(isValid("[}]"));
-        System.out.println(isValid(""));
+        Stack<Character> stack = new Stack<Character>();
+        System.out.println(newIsValid("{}{}"));
+        System.out.println(newIsValid("{{{{}{{}}}{}"));
+        System.out.println(newIsValid("[{}{}]"));
+        System.out.println(newIsValid("[}]"));
+        System.out.println(newIsValid(""));
     }
 
     public static boolean isValid(String s) {
@@ -43,6 +44,27 @@ public class Solution20 {
             }
         }
         if (stack.isEmpty()) return true;
+        return false;
+    }
+
+    public static boolean newIsValid(String s) {
+        if(s == null) return false;
+        int len = s.length();
+        Stack<Character> stack = new Stack<Character>();
+        for(int i = 0;i<len;i++){
+            char curChar = s.charAt(i);
+            if(curChar - '(' == 0 || curChar - '[' == 0 || curChar - '{' == 0){
+                stack.push(curChar);
+            } else if(stack.isEmpty()) {
+                return false;
+            } else {
+                if(curChar - ')' == 0  && stack.peek() - '(' == 0) stack.pop();
+                else if(curChar - ']' == 0  && stack.peek() - '[' == 0) stack.pop();
+                else if(curChar - '}' == 0  && stack.peek() - '{' == 0) stack.pop();
+                else return false;
+            }
+        }
+        if(stack.isEmpty()) return true;
         return false;
     }
 }

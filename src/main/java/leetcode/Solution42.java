@@ -21,6 +21,7 @@ public class Solution42 {
         System.out.println(solution42.trap(height));
         System.out.println(solution42.trap2(height));
         System.out.println(solution42.trap3(height));
+        System.out.println(solution42.trap5(height));
     }
 
     public int trap(int[] height) {
@@ -112,5 +113,30 @@ public class Solution42 {
             }
         }
         return sum;
+    }
+
+    public int trap5(int[] height) {
+        if(height == null || height.length == 0) return 0;
+        int[] leftMax = new int[height.length];
+        int max = height[0];
+        for(int i = 0;i<height.length;i++){
+            if(max <= height[i]){
+                max = height[i];
+            }
+            leftMax[i] = max;
+        }
+        int[] rightMax = new int[height.length];
+        max = height[height.length - 1];
+        for(int i = height.length - 1;i>= 0;i--){
+            if(max <= height[i]){
+                max = height[i];
+            }
+            rightMax[i] = max;
+        }
+        int total = 0;
+        for(int i = 0;i<height.length;i++){
+            total += Math.min(leftMax[i], rightMax[i]) - height[i];
+        }
+        return total;
     }
 }
