@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class Solution75 {
     public static void main(String[] args) {
-        int[] num = {2,0,2,1,1,0};
+        int[] num = {2,0,1};
         Solution75 solution75 = new Solution75();
         solution75.sortColors(num);
         Arrays.stream(num).forEach(System.out::print);
@@ -27,12 +27,10 @@ public class Solution75 {
                 curIndex++;
             } else if (nums[curIndex] == 2){
                 swap(nums, curIndex, rightIndex);
-                curIndex++;
                 rightIndex --;
             } else {
                 curIndex++;
             }
-            if (curIndex == rightIndex) break;
         }
     }
 
