@@ -70,7 +70,10 @@ public class LRUCacheByListAndMap {
 
     private void removeLastNode() {
         nodeMap.remove(tail.getKey());
-        tail = null;
+        tail = tail.prev;
+        if (tail != null) {
+            tail.next = null;
+        }
     }
 
     private void addNode(Node nodeTemp) {
