@@ -73,6 +73,7 @@ public class Solution101 {
             TreeNode t2 = queue.poll();
             if (t1 == null && t2 == null) continue;
             if (t1 == null || t2 == null) return false;
+            if (t1.val != t2.val) return false;
             queue.add(t1.left);
             queue.add(t2.right);
             queue.add(t2.left);
