@@ -1,7 +1,10 @@
 package com.example.spring.practice;
 
 import org.junit.Test;
+import sun.misc.ProxyGenerator;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.lang.reflect.Proxy;
 import java.util.*;
 
@@ -21,6 +24,16 @@ public class ServiceImplTest {
         MyInvocationHandler handler = new MyInvocationHandler(service);
         Service servicetest = (Service) handler.getProxyInstance();
         servicetest.add();
+
+        byte[] testProxyBytes = ProxyGenerator.generateProxyClass("TestService", new Class[]{Service.class});
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream("TestProxy.class");
+            fileOutputStream.write(testProxyBytes);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 //        Service serviceProxy = (Service) Proxy.newProxyInstance(service.getClass().getClassLoader(), service.getClass().getInterfaces(), handler);
 //        serviceProxy.add();
