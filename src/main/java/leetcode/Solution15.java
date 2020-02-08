@@ -17,7 +17,7 @@ import java.util.List;
 public class Solution15 {
     public static void main(String[] args) {
         //-4,-1,-1,0,1,2
-        int[] num = {0,0,0,0};
+        int[] num = {-4,-1,-1,0,1,2};
         System.out.println(threeSum(num));
     }
 
@@ -70,17 +70,20 @@ public class Solution15 {
     }
 
     //别人的方法，非常简单
+    //第二次来看，还是非常简单
     public static List<List<Integer>> newThreeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> ls = new ArrayList<>();
 
         for (int i = 0; i < nums.length - 2; i++) {
+            //这一步非常妙啊
             if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {  // 跳过可能重复的答案
 
                 int l = i + 1, r = nums.length - 1, sum = 0 - nums[i];
                 while (l < r) {
                     if (nums[l] + nums[r] == sum) {
                         ls.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                        //这两步也非常妙啊，都可以跳过重复的值
                         while (l < r && nums[l] == nums[l + 1]) l++;
                         while (l < r && nums[r] == nums[r - 1]) r--;
                         l++;
