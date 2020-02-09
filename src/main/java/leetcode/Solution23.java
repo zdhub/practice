@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 
 /**
  * @ClassName Solution23
- * @Descirption 合并K个排序链表
+ * @Descirption 合并K个排序链表。分而治之的方法的时间复杂度为：O(Nlogk)，其中k 是链表的数目，N是总的节点数目。时间复杂度较优
  * @Author yizhendong
  * @Date 2019/5/15
  **/
