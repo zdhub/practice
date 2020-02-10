@@ -2,7 +2,7 @@ package leetcode;
 
 /**
  * @ClassName Solution25
- * @Descirption k个一组翻转链表
+ * @Descirption k个一组翻转链表，第二次尝试没有成功
  * @Author yizhendong
  * @Date 2019/5/15
  **/

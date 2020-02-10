@@ -102,12 +102,18 @@ public class Solution24 {
         return result.next.next;
     }
 
+    /**
+     * 使用递归，代码非常简单，学习到了
+     *
+     * @param head
+     * @return
+     */
     public ListNode otherSwapPairs(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
         ListNode next = head.next;
-        head.next = swapPairs(next.next);
+        head.next = otherSwapPairs(next.next);
         next.next = head;
         return next;
     }

@@ -2,7 +2,7 @@ package leetcode;
 
 /**
  * @ClassName Solution26
- * @Descirption 删除排序数组中的重复项
+ * @Descirption 删除排序数组中的重复项，乍一看，没想出来，其实比较简单。类似于冒泡排序，同时冒泡的次数要依次减少。
  * @Author yizhendong
  * @Date 2019/5/21
  **/
