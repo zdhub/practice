@@ -19,19 +19,19 @@ public class Solution98 {
     public boolean isValidBST(TreeNode root) {
         List<Integer> list = new ArrayList<>();
         TreeNode current = root;
-        middleOrder(list, current);
+        inOrder(list, current);
         return isValidList(list);
     }
 
-    public void middleOrder(List<Integer> list, TreeNode current) {
+    public void inOrder(List<Integer> list, TreeNode current) {
         if (current == null) return;
         if (current.left == null) {
             list.add(current.val);
-            middleOrder(list, current.right);
+            inOrder(list, current.right);
         } else {
-            middleOrder(list, current.left);
+            inOrder(list, current.left);
             list.add(current.val);
-            middleOrder(list, current.right);
+            inOrder(list, current.right);
         }
     }
 
@@ -47,6 +47,8 @@ public class Solution98 {
 
     /**
      * 也可以使用栈
+     * 时间复杂度O(n)
+     * 空间复杂度O(n)
      */
     public boolean isValidBSTV2(TreeNode root) {
         Integer min = Integer.MIN_VALUE;
@@ -63,6 +65,48 @@ public class Solution98 {
             root = root.right;
         }
         return true;
+    }
+
+    /**
+     * 也可以使用递归
+     * 可以想象判断一个数的值是否都在一个上下限之内，如果是的话，依次判断这个树的左子树和右子树
+     */
+    public boolean isValidBSTV3(TreeNode root){
+        int min = Integer.MIN_VALUE;
+        int max = Integer.MAX_VALUE;
+        if (root == null) {
+            return true;
+        }
+        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
+    }
+
+    public boolean helper(TreeNode root, int min, int max){
+        if (root == null) {
+            return true;
+        }
+        if (root.val < min || root.val > max) {
+            return false;
+        }
+        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
+    }
+
+    /**
+     * 还有一种很巧妙的方法，使用中序遍历，一边遍历，一边判断当前的值是否比前一个值小，如果是的话，return false
+     */
+    Integer pre = Integer.MIN_VALUE;
+    public boolean isValidBSTV4(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (!isValidBSTV4(root.left)){
+            return false;
+        }
+        // 访问当前节点：如果当前节点小于等于中序遍历的前一个节点，说明不满足BST，返回 false；否则继续遍历。
+        if (root.val < pre) {
+            return false;
+        }
+        pre = root.val;
+        return isValidBSTV4(root.right);
     }
 
     public class TreeNode {
