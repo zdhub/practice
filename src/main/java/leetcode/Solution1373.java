@@ -36,8 +36,7 @@ public class Solution1373 {
         } else {
             main.min = Integer.MAX_VALUE;
             main.max = Integer.MIN_VALUE;
-            main.sum = Math.max(left.sum, right.sum);
-        }
+            main.sum = Math.max(left.sum, right.sum);        }
         return main;
     }
 

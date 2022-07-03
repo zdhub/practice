@@ -16,12 +16,12 @@ public class QuickSort {
         }
     }
 
-    public void sort(int[] nums){
+    public void sort(int[] nums) {
         quickSort(nums, 0, nums.length - 1);
     }
 
     private void quickSort(int[] nums, int left, int right) {
-        if (left >= right){
+        if (left >= right) {
             return;
         }
         int pivotPosition = partition(nums, left, right);
@@ -32,11 +32,43 @@ public class QuickSort {
     private int partition(int[] nums, int left, int right) {
         int pivot = nums[left];
         while (left < right) {
-            while (left < right && nums[right] >= pivot){
+            while (left < right && nums[right] >= pivot) {
                 right--;
             }
             nums[left] = nums[right];
-            while (left < right && nums[left] <= pivot){
+            while (left < right && nums[left] <= pivot) {
+                left++;
+            }
+            nums[right] = nums[left];
+        }
+        nums[left] = pivot;
+        return left;
+    }
+
+    public int partition1(int[] nums, int left, int right) {
+        int pivot = nums[left];
+        while (left < right) {
+            while (left < right && nums[right] >= pivot) {
+                right--;
+            }
+            nums[left] = nums[right];
+            while (left < right && nums[left] <= pivot) {
+                left++;
+            }
+            nums[right] = nums[left];
+        }
+        nums[left] = pivot;
+        return left;
+    }
+
+    public int partition2(int[] nums, int left, int right) {
+        int pivot = nums[left];
+        while (left < right) {
+            while (left < right && nums[right] >= pivot) {
+                right--;
+            }
+            nums[left] = nums[right];
+            while (left < right && nums[left] <= pivot) {
                 left++;
             }
             nums[right] = nums[left];
