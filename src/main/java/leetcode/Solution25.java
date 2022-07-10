@@ -12,6 +12,38 @@ public class Solution25 {
 
     }
 
+    public ListNode reverseKGroupV2(ListNode head, int k){
+        if(k <= 1 || head == null || head.next == null) return head;
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode pointer = dummy;
+        while (pointer != null) {
+
+            // Firstly, check if there are k nodes to reverse.
+            ListNode node = pointer;
+            for (int i = 0; i < k && node != null; i++){
+                node = node.next;
+            }
+            if (node == null) break;
+
+            // Secondly, start from the first node.
+            ListNode pre = null, cur = pointer.next, next = null;
+            for (int i = 0; i < k; i++) {
+                next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+            }
+            // 关键在这里，需要仔细体会
+            ListNode tail = pointer.next;
+            tail.next = cur;
+            pointer.next = pre;
+            pointer = tail;
+        }
+        return dummy.next;
+    }
+
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode current_node = head;
         int count = 0;
