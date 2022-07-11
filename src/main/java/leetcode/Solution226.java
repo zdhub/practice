@@ -8,7 +8,9 @@ import java.util.Queue;
  * @vertion:1.0
  * @author:yizhendong
  * @date:2020/1/12 11:24
+ *  2022年7月11日再次做，一次成功
  */
+@Easy
 public class Solution226 {
 
 

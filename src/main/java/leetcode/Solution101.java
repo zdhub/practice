@@ -9,6 +9,7 @@ import java.util.Queue;
  * @Descirption
  * @Author yizhendong
  * @Date 5/1/2020
+ * 2022年7月11日，重新做又一次性做对；迭代的方式也很优雅，第一次没有想到；
  **/
 @Easy
 public class Solution101 {
