@@ -15,6 +15,9 @@ import java.util.Stack;
  * @vertion:1.0
  * @author:yizhendong
  * @date:2019/11/15 8:50
+ * 2022年7月12日，再一次做没有成功想出来。
+ * 看了讨论之后，发现思路大概有两种，一种是通过两个栈来处理，一个栈保留原始的数字，另外一个栈保留历史最小值；
+ * 还有一种思路是通过链表的节点来处理，节点的元素包括值val，以及最小值min，以及next节点。
  */
 class MinStack {
     public static void main(String[] args) {
@@ -24,61 +27,36 @@ class MinStack {
         minStack.push(-1);
         System.out.println(minStack.getMin());
     }
-    private Stack<Integer> stack;
-    private List<Integer> list;
 
-    /**
-     * initialize your data structure here.
-     */
-    public MinStack() {
-        stack = new Stack<>();
-        list = new ArrayList<>();
-    }
+    private Node head;
 
-    public void push(int x) {
-        stack.push(x);
-        if (list.size() == 0) {
-            list.add(x);
+    public void push(int x){
+        if (head == null){
+            head = new Node(x, x, null);
         } else {
-            listAdd(x);
+            head = new Node(x, Math.min(head.min, x), head);
         }
     }
 
-    private void listAdd(int x) {
-        if (list.size() == 0) {
-            list.add(x);
-        } else {
-            for (int i = 0; i < list.size(); i++) {
-                if (x < list.get(i)) {
-                    list.add(i, x);
-                    return;
-                }
-            }
-            list.add(x);
+    public void pop(){
+        head = head.next;
+    }
+
+    public int getMin(){
+        return head.min;
+    }
+
+    private class Node {
+        int val;
+        int min;
+        Node next;
+
+        private Node(int val, int min, Node next) {
+            this.val = val;
+            this.min = min;
+            this.next = next;
         }
     }
 
-    public void pop() {
-        int x = stack.pop();
-        removeList(x);
-    }
 
-    private void removeList(int x) {
-        int index = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (x == list.get(i)) {
-                index = i;
-                break;
-            }
-        }
-        list.remove(index);
-    }
-
-    public int top() {
-        return stack.peek();
-    }
-
-    public int getMin() {
-        return list.get(0);
-    }
 }
