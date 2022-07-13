@@ -1,13 +1,13 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @ClassName Solution102
  * @Descirption 二叉树的层次遍历 也是有两种方法，递归和迭代。第一次没有想出来做法，看了提示之后才想到
  * @Author yizhendong
  * @Date 5/1/2020
+ * 2022年7月13日刷题，仍旧没有很顺滑的搞定
  **/
 @Medium
 public class Solution102 {
@@ -42,7 +42,21 @@ public class Solution102 {
      * 第二种方法：迭代
      */
     public List<List<Integer>> levelOrder1(TreeNode root) {
-        return null;
+        List<List<Integer>> list = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if(root == null) return list;
+        queue.offer(root);
+        while(queue.size() != 0){
+            int levelNum = queue.size();
+            List<Integer> sublist = new ArrayList<>();
+            for(int i = 0; i < levelNum; i++){
+                if(queue.peek().left != null) queue.offer(queue.peek().left);
+                if(queue.peek().right != null) queue.offer(queue.peek().right);
+                sublist.add(queue.poll().val);
+            }
+            list.add(sublist);
+        }
+        return list;
     }
 
     public class TreeNode {
