@@ -16,7 +16,7 @@ public class Solution102 {
     }
 
     /**
-     * 第一种方法：递归
+     * 第一种方法：递归，或者称之为深度优先 DFS
      */
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
@@ -39,7 +39,7 @@ public class Solution102 {
     }
 
     /**
-     * 第二种方法：迭代
+     * 第二种方法：迭代，或者称之为广度优先 BFS
      */
     public List<List<Integer>> levelOrder1(TreeNode root) {
         List<List<Integer>> list = new ArrayList<>();
