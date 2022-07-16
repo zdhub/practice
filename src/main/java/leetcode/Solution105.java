@@ -1,5 +1,6 @@
 package leetcode;
 
+
 import java.util.HashMap;
 
 /**
@@ -7,6 +8,7 @@ import java.util.HashMap;
  * @vertion:1.0
  * @author:yizhendong
  * @date:2020/1/11 20:17
+ * 2022年7月14日，再次尝试，还是不太会
  */
 @Medium
 public class Solution105 {
@@ -64,7 +66,7 @@ public class Solution105 {
         int index = map.get(preorder[pstart]);
         int gap = index - istart;
         TreeNode node = new TreeNode(preorder[pstart]);
-        node.left = helperBuild2(preorder, pstart + 1, pstart + gap, inorder, istart, istart + gap , map);
+        node.left = helperBuild2(preorder, pstart + 1, pstart + gap, inorder, istart, istart + gap, map);
         node.right = helperBuild2(preorder, pstart + gap + 1, pend, inorder, istart + gap + 1, iend, map);
         return node;
     }
