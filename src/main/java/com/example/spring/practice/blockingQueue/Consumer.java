@@ -1,6 +1,6 @@
 package com.example.spring.practice.blockingQueue;
 
-import sun.security.provider.NativePRNG;
+//import sun.security.provider.NativePRNG;
 
 import java.util.concurrent.BlockingQueue;
 

@@ -5,6 +5,7 @@ package leetcode;
  * @Descirption  删除链表的倒数第N个节点 medium https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/
  * @Author yizhendong
  * @Date 2019/5/13
+ * 2022年7月10日第二次做，仍旧需要注意边界条件
  **/
 @Medium
 public class Solution19 {

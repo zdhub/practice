@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @ClassName Solution17
- * @Descirption 电话号码的字母组合 medium
+ * @Descirption 电话号码的字母组合 medium  有点难度，第一次没搞出来
  * @Author yizhendong
  * @Date 2019/5/12
  **/
@@ -33,32 +33,27 @@ public class Solution17 {
 
     private static List<String> getLetter(String digits, HashMap<String, List<String>> hashMap) {
         List<String> result = new ArrayList<>();
-        if (digits == null || digits.length() == 0){
+        if (digits == null || digits.length() == 0) {
             return result;
         }
         int i = 0;
         String pre = "";
         String item = digits.substring(i, i + 1);
         List<String> list = hashMap.get(item);
-        getLetterFromIndex(pre, list, i+1 , result, digits, hashMap);
+        getLetterFromIndex(pre, list, i + 1, result, digits, hashMap);
         return result;
     }
 
     private static void getLetterFromIndex(String pre, List<String> list, int num, List<String> result, String digits, HashMap<String, List<String>> hashMap) {
         if (num >= digits.length()) {
-            for (int i = 0;i<list.size();i++){
+            for (int i = 0; i < list.size(); i++) {
                 result.add(pre + list.get(i));
             }
             return;
         }
         List<String> newList = hashMap.get(digits.substring(num, num + 1));
         for (int i = 0; i < list.size(); i++) {
-            if (num >= digits.length()) {
-                result.add(pre);
-                return;
-            } else {
-                getLetterFromIndex(pre + list.get(i), newList, num + 1, result, digits, hashMap);
-            }
+            getLetterFromIndex(pre + list.get(i), newList, num + 1, result, digits, hashMap);
         }
     }
 }
