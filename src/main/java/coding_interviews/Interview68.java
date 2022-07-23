@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @Description: Please generate all combinations of a given string. For example, combinations of a given string
  * “abc” are “a”, “b”, “c”, “ab”, “ac”, “bc”, and “abc”.
- * @Comment: 第一次也不是很懂，需要重复练习。关于排列组合的题目，目前还不是很熟练
+ * @Comment: 第一次也不是很懂，需要重复练习。关于排列组合的题目，目前还不是很熟练; 和Leetcode 77 是同一个类型的题
  * @Tag: combinations; backtracking;
  * @Version:1.0
  * @Author:yizhendong
@@ -34,7 +34,7 @@ public class Interview68 {
         LinkedList<Character> subList = new LinkedList<>();
         // 首先，因为需要获取所有的组合，从长度为1到长度为全长，所以需要循环
         for (int i = 1; i <= str.length(); i++) {
-            combinationCore(str, 0, i, result, subList);
+            combinationCoreV2(str, 0, i, result, subList);
         }
         return result;
     }
@@ -47,8 +47,8 @@ public class Interview68 {
         }
 
         for (int i = index; i <= str.length() - number; i ++ ){
-            subList.add(str.charAt(i));
-            combinationCoreV2(str, index + 1, number -1, result, subList);
+            subList.push(str.charAt(i));
+            combinationCoreV2(str, i + 1, number -1, result, subList);
             subList.pop();
         }
     }
