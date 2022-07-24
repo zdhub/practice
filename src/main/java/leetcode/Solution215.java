@@ -1,6 +1,7 @@
 package leetcode;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 
 /**
@@ -9,6 +10,7 @@ import java.util.PriorityQueue;
  * @author:yizhendong
  * @date:2019/11/17 17:34
  * @Comment: 需要对比不同的解法
+ * @Tag: Divide and Conquer; Sorting; Heap; Quickselect
  * @Solution:
  *  1.有很多种不同的解法，首先可以想到的就是先对所有的元素排序，然后返回其中第K大的数。时间复杂度 O(nlogn);
  *  2.第二种方法就是利用快排的思想，使用partition函数。时间复杂度O(n)。但是也有缺点，缺点在于a.要把所有数加载到内存中；b.要修改原数组
