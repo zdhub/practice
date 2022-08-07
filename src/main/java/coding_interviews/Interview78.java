@@ -1,5 +1,7 @@
 package coding_interviews;
 
+import leetcode.Easy;
+
 import java.util.HashSet;
 
 /**
@@ -11,6 +13,7 @@ import java.util.HashSet;
  * @Date:2022/8/7
  * @Time:17:37
  */
+@Easy
 public class Interview78 {
     public String DeleteCharacters(String s1, String s2){
         HashSet<Character> charSet = new HashSet<>();
