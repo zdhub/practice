@@ -46,7 +46,7 @@ package leetcode;
     1000 to 1999 (1000)
 则共有 456 * 1000 + 1000 种情况
  */
-public class Interview233 {
+public class Solution233 {
     public int countDigitOne(int number) {
         if (number < 0) return 0;
         int q = number, x = 1, count = 0;
@@ -62,8 +62,8 @@ public class Interview233 {
     }
 
     public static void main(String[] args) {
-        Interview233 interview233 = new Interview233();
-        System.out.println(interview233.countDigitOne(13));
+        Solution233 solution233 = new Solution233();
+        System.out.println(solution233.countDigitOne(13));
     }
 
 }
