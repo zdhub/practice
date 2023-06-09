@@ -15,8 +15,8 @@ import java.util.LinkedList;
 public class Solution104 {
     public int maxDepth2(TreeNode root) {
         if(root == null) return 0;
-        int leftDepth = maxDepth(root.left);
-        int rightDepth = maxDepth(root.right);
+        int leftDepth = maxDepth2(root.left);
+        int rightDepth = maxDepth2(root.right);
         return Math.max(leftDepth+1, rightDepth+1);
     }
 

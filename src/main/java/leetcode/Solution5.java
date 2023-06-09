@@ -3,6 +3,7 @@ package leetcode;
 /**
  * @ClassName Solution5
  * @Descirption 最大回文数 中心扩展算法是一个时间复杂度较低的算法，O（N2），还有一种算法，Manacher 算法，复杂度为 O(n)
+ * 这种也算是左右指针的类型，不过目前来看，也就回文数是从中间向两边扩展
  * @Author yizhendong
  * @Date 7/2/2020
  **/

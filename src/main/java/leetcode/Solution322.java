@@ -8,6 +8,7 @@ import java.util.Collections;
  * 我的coinChange算法一直没有成功通过，而且还很耗费时间，代码也不优雅
  * Leetcode上大家的解法，只用到了一维数组（dp）,而且其实不用排序，非常简单和优雅
  */
+@Medium
 class Solution322 {
     public static void main(String[] args) {
         Solution322 solution322 = new Solution322();
@@ -77,6 +78,13 @@ class Solution322 {
         return min;
     }
 
+    /**
+     * 方式二：带备忘录的动态规划方法
+     * 动态规划式的解法
+     * @param coins
+     * @param amount
+     * @return
+     */
     public int coinChangeV1(int[] coins, int amount) {
         int[] dp = new int[amount + 1];
 
@@ -88,4 +96,22 @@ class Solution322 {
         }
         return dp[amount] == dp.length ? -1 : dp[amount];
     }
+
+
+    /**
+     *
+     * 方式一：不带备忘录的穷举法
+     *
+     * public int coinChange(int[] coins, int amount){
+     *      return dp(coins, amount)
+     * }
+     *
+     * 这个就是核心的dp伪代码，需要做的就是补充退出条件
+     * public int dp(int[] coins, int n){
+     *     for(int coin : coins){
+     *         res = min(res, 1 + dp(coins, n - coin))
+     *     }
+     *     return res
+     * }
+     */
 }

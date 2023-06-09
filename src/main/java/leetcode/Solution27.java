@@ -58,6 +58,20 @@ public class Solution27 {
         return i;
     }
 
+    // 也是一个双指针方法
+    int removeElement4(int[] nums, int val) {
+        int fast = 0, slow = 0;
+        while (fast < nums.length) {
+            if (nums[fast] != val) {
+                nums[slow] = nums[fast];
+                slow++;
+            }
+            fast++;
+        }
+        return slow;
+    }
+
+
     public int removeElementV3(int[] nums, int val) {
         int i = 0;
         int j = nums.length - 1;

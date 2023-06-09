@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 /**
  * @ClassName Solution23
  * @Descirption 合并K个排序链表。分而治之的方法的时间复杂度为：O(Nlogk)，其中k 是链表的数目，N是总的节点数目。时间复杂度较优
+ * 2023年的思路，可以使用优先级队列来说实现
  * @Author yizhendong
  * @Date 2019/5/15
  **/
@@ -51,6 +52,24 @@ public class Solution23 {
         ListNode endNode = mergeKLists(end);
 
         return getLists(startNode, endNode);
+    }
+
+    public static ListNode mergeKListsV2(ListNode[] lists){
+        PriorityQueue<ListNode> pq = new PriorityQueue<>(lists.length, (a, b)->(a.val - b.val));
+        for (ListNode head : lists) {
+            pq.add(head);
+        }
+        ListNode head = new ListNode(1);
+        ListNode dummy = head;
+        while (!pq.isEmpty()) {
+            ListNode node = pq.poll();
+            head.next = node;
+            if (node.next != null) {
+                pq.add(node.next);
+            }
+            head = head.next;
+        }
+        return dummy.next;
     }
 
     private static ListNode getLists(ListNode l1, ListNode l2) {
