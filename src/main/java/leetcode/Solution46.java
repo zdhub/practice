@@ -2,6 +2,7 @@ package leetcode;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -38,6 +39,56 @@ public class Solution46 {
             Collections.swap(temp, i, first);
             backtrack(n, result, temp, first + 1);
             Collections.swap(temp, first, i);
+        }
+    }
+
+    // 在2023年的6月11日，看了拉不拉东的算法解释，目前有一些些思路
+    // 核心的代码框架是这样的
+    /**
+     * result = []
+     * <p>
+     * def backtrack(路径，选择列表){
+     * if 满足结束条件:
+     * result.add(路径)
+     * return
+     * <p>
+     * for 选择 in 选择列表:{
+     * 做选择
+     * backtrack(路径，选择列表)
+     * 撤销选择
+     * }
+     * }
+     */
+
+    // 回到这个问题，可以不用n来解答
+    List<List<Integer>> resultV2 = new ArrayList<>();
+
+    public List<List<Integer>> permute2(int[] nums) {
+        LinkedList<Integer> track = new LinkedList<>();
+        boolean[] visited = new boolean[nums.length];
+        backtrackV2(track, visited, nums);
+        return resultV2;
+    }
+
+    public void backtrackV2(LinkedList track, boolean[] visited, int[] nums){
+        // 判断结束条件
+        if (track.size() == nums.length){
+            resultV2.add(new ArrayList<>(track));
+            return;
+        }
+
+        // 选择列表
+        for (int i = 0; i < nums.length; i++) {
+            if (visited[i]){
+                continue;
+            }
+
+            // 全排列的时候，才需要使用到Visited用来判断是否访问过
+            visited[i] = true;
+            track.add(nums[i]);
+            backtrackV2(track, visited, nums);
+            track.removeLast();
+            visited[i] = false;
         }
     }
 }

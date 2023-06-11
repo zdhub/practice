@@ -2,10 +2,7 @@ package leetcode;
 
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description: 组合总和 II  candidates 中的每个数字在每个组合中只能使用一次。  https://leetcode-cn.com/problems/combination-sum-ii/
@@ -57,5 +54,35 @@ public class Solution40 {
             getResult(candidates, target - candidates[j], result, temp, k);
         }
 
+    }
+
+
+    /**
+     * 标准的回溯法，需要注意的是backtrack的签名
+     */
+    List<List<Integer>> res = new LinkedList<>();
+    LinkedList<Integer> track = new LinkedList<>();
+    public List<List<Integer>> combinationSum2V2(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        backtrack(candidates, target, 0);
+        return res;
+    }
+
+    public void backtrack(int[] candidates, int target, int start){
+        if (target == 0){
+            res.add(new ArrayList(track));
+            return;
+        }
+        if (target < 0){
+            return;
+        }
+        for(int i = start; i < candidates.length; i++){
+            if (i > start && candidates[i] == candidates[i - 1]) {
+                continue;
+            }
+            track.add(candidates[i]);
+            backtrack(candidates, target - candidates[i], i + 1);
+            track.removeLast();
+        }
     }
 }

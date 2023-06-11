@@ -56,4 +56,27 @@ public class Solution77 {
         result.addAll(combineV2(n - 1, k));
         return result;
     }
+
+
+    /**
+     * 还是回溯法的经典题型
+     */
+    public List<List<Integer>> res = new ArrayList<>();
+    public LinkedList<Integer> track = new LinkedList<>();
+    public List<List<Integer>> combineV3(int n, int k) {
+        backtrack(n, k, 0);
+        return res;
+    }
+
+    public void backtrack(int n, int k, int start){
+        if (track.size() == k){
+            res.add(new ArrayList(track));
+            return;
+        }
+        for(int i = start; i < n; i++){
+            track.add(i+1);
+            backtrack(n, k, i + 1);
+            track.removeLast();
+        }
+    }
 }

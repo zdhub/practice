@@ -2,10 +2,7 @@ package leetcode;
 
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description:组合总和 https://leetcode-cn.com/problems/combination-sum/  candidates 中的数字可以无限制重复被选取。
@@ -74,6 +71,36 @@ public class Solution39 {
             list.add(candidates[i]);
             //递归运算，将i传递至下一次运算是为了避免结果重复。
             find(listAll,list,candidates,target-candidates[i],i);
+        }
+    }
+
+
+    /**
+     * 这个也是回溯法，和216题类似，比216题更加简单
+     */
+
+    List<List<Integer>> res = new LinkedList<>();
+    LinkedList<Integer> track = new LinkedList<>();
+    public List<List<Integer>> combinationSumV2(int[] candidates, int target) {
+        backtrack(candidates, target, 0);
+        return res;
+    }
+
+
+    // 注意这里的start参数
+    public void backtrack(int[] candidates, int target, int start){
+        if(target == 0 ){
+            res.add(new LinkedList(track));
+            return;
+        }
+        if(target < 0 ){
+            return;
+        }
+        for(int i = start; i < candidates.length; i++){
+            track.add(candidates[i]);
+            // 由于是可以重复的，所以这里的start参数仍旧从i开始
+            backtrack(candidates, target - candidates[i], i);
+            track.removeLast();
         }
     }
 }

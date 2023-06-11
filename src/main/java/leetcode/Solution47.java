@@ -46,6 +46,8 @@ public class Solution47 {
         }
         for(int i=0;i<nums.length;i++){
             if(used[i]) continue;
+            // 这块是代码的关键之处
+            // 当出现重复元素时，比如输入 nums = [1,2,2',2'']，2' 只有在 2 已经被使用的情况下才会被选择，同理，2'' 只有在 2' 已经被使用的情况下才会被选择，这就保证了相同元素在排列中的相对位置保证固定。
             if(i>0 &&nums[i-1]==nums[i] && !used[i-1]) continue;
             used[i]=true;
             list.add(nums[i]);
