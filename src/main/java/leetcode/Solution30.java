@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 /**
- * @ClassName Solution
+ * @ClassName com.example.spring.practice.demo.Solution
  * @Descirption 串联所有单词的子串 做的时候，超时
  * @Author yizhendong
  * @Date 2019/5/30

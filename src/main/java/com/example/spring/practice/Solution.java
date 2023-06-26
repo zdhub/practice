@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @ClassName Solution
+ * @ClassName com.example.spring.practice.demo.Solution
  * @Descirption
  * @Author yizhendong
  * @Date 2019/3/28

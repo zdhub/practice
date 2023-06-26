@@ -153,14 +153,4 @@ public class Solution23 {
         }
         return dummy.next;
     }
-
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        public ListNode(int x) {
-            val = x;
-        }
-    }
 }

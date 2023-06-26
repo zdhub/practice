@@ -52,14 +52,5 @@ public class Solution21 {
         return head.next;
     }
 
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        public ListNode(int x) {
-            val = x;
-        }
-    }
-
 
 }

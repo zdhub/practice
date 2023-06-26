@@ -61,13 +61,4 @@ public class Solution160 {
         return null;
 
     }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        public ListNode(int x) {
-            val = x;
-        }
-    }
 }
